@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+	<meta charset="UTF-8">
+    <title>Páll Márton</title>
+    <link rel="stylesheet" href="../library/game.css">
+</head>
+<body>
+
+    <svg width="4000" height="4000" viewBox="0 0 4000 4000">
+        <style>
+            .highlighted {font-size: 24px; fill: #075;}
+        </style>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+    </svg>
+
+    <div class="topnav" id="myTopnav">
+        <a href="?brute-force">brute-force</a>
+        <a href="?piros-kek">piros-kék</a>
+        <a href="?prim">prim</a>
+        <a href="?kruskal">kruskal</a>
+        <a href="?boruvka">boruvka</a>
+        <a href="?reverse-delete">levágó</a>
+        <a href="javascript:void(0);" class="icon" onclick="openTopNav()">
+            <img src="../library/list.png" alt="Menü" width="30px" height="30px"></a>
+    </div>
+    <p id='showData'></p>
+    <p id='showData2'></p>
+    <div class="playground">
+        <div class="dot active" id="l1" onmousedown="setId('l1')" onmouseup="setActId('l1')" oncontextmenu="deleteDot('l1')"></div>
+        <div class="dot active" id="l2" onmousedown="setId('l2')" onmouseup="setActId('l2')" oncontextmenu="deleteDot('l2')"></div>
+        <div class="dot active" id="l3" onmousedown="setId('l3')" onmouseup="setActId('l3')" oncontextmenu="deleteDot('l3')"></div>
+        <div class="dot active" id="l4" onmousedown="setId('l4')" onmouseup="setActId('l4')" oncontextmenu="deleteDot('l4')"></div>
+        <div class="dot active" id="l5" onmousedown="setId('l5')" onmouseup="setActId('l5')" oncontextmenu="deleteDot('l5')"></div>
+    </div>
+
+    
+    <div class="action" onmouseup="startAlgorithm()" id="startAction"><img src="../library/play-button.png" class="actionImage" alt="Start" width="30px" height="30px" draggable="false" id="startButton"></div>
+    <div class="action" onmouseup="console.log(212)" onmouseenter="showSlider()" onmouseleave="hideSlider()" id="sliderAction">
+           <img src="../library/speed.png" class="actionImage" alt="Sebesség" width="40px" height="40px" draggable="false" id="speed">
+    </div>
+    <div class="action" onmouseup="randomisePlace(true)" id="shakeAction"><img src="../library/dices.png" class="actionImage" alt="Keverés" width="45px" height="45px" draggable="false" id="shake"></div>
+    <div class="action" onmouseup="numerate()" id="numerateAction"><img src="../library/numerate.png" class="actionImage" alt="Számozás" width="44px" height="44px" draggable="false" id="num"></div>
+    <div class="action" onmouseup="scale()" id="scaleAction"><img src="../library/scale.png" class="scaleImage" alt="Mérés" width="40px" height="40px" draggable="false" id="scale"></div>
+
+    <script>
+        const hrefName=window.location.href;
+        let b=hrefName.length-1;
+        for(;hrefName[b]!='?'&&b>0;b--);
+            console.log(b)
+        let myFile;
+        if(b==0){
+            myFile='brute-force';
+        } else {
+            b++;
+            myFile=hrefName.slice(b, hrefName.length);
+        }
+        const myScript = document.createElement('script');
+        myScript.setAttribute('src', myFile+'.js');
+        document.body.appendChild(myScript);
+    </script>
+    <script src="../library/engine.js"></script>
+    
+</body>
+</html>
